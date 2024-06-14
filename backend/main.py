@@ -909,15 +909,46 @@ class SubtitleRemover:
 
 
 if __name__ == '__main__':
+    import argparse
+    import multiprocessing
+    
     multiprocessing.set_start_method("spawn")
-    # 1. 提示用户输入视频路径
-    video_path = input(f"Please input video or image file path: ").strip()
-    # 判断视频路径是不是一个目录，是目录的化，批量处理改目录下的所有视频文件
-    # 2. 按以下顺序传入字幕区域
-    # sub_area = (ymin, ymax, xmin, xmax)
-    # 3. 新建字幕提取对象
+
+    # Set up argument parser
+    parser = argparse.ArgumentParser(description="Remove subtitles from video or image files.")
+    parser.add_argument('video_path', type=str, help="Path to the video or image file.")
+    parser.add_argument('--sub_area', type=str, help="Subtitle area as ymin,ymax,xmin,xmax", default=None)
+
+    args = parser.parse_args()
+
+    # Process subtitle area if provided
+    sub_area = None
+    if args.sub_area:
+        sub_area = tuple(map(int, args.sub_area.split(',')))
+
+    # 1. Prompt the user to input the video path
+    video_path = args.video_path.strip()
+
+    # Check if the video path is a directory. If it is, batch process all video files in that directory
     if is_video_or_image(video_path):
-        sd = SubtitleRemover(video_path, sub_area=None)
+        # 2. Pass the subtitle area in the following order
+        # sub_area = (ymin, ymax, xmin, xmax)
+        
+        # 3. Create a new subtitle extraction object
+        sd = SubtitleRemover(video_path, sub_area=sub_area)
         sd.run()
     else:
         print(f'Invalid video path: {video_path}')
+        
+    # multiprocessing.set_start_method("spawn")
+    # # 1. 提示用户输入视频路径
+    # video_path = input(f"Please input video or image file path: ").strip()
+    # # 判断视频路径是不是一个目录，是目录的化，批量处理改目录下的所有视频文件
+    # # 2. 按以下顺序传入字幕区域
+    # # sub_area = (ymin, ymax, xmin, xmax)
+    # # 3. 新建字幕提取对象
+    # if is_video_or_image(video_path):
+    #     sd = SubtitleRemover(video_path, sub_area=None)
+    #     sd.run()
+    # else:
+    #     print(f'Invalid video path: {video_path}')
