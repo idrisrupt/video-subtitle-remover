@@ -8,7 +8,7 @@ setup(
         'albumentations==0.5.2',
         'filesplit==3.0.2',
         'opencv-python==4.8.1.78',
-        #'scikit-image==0.17.2',
+        # 'scikit-image==0.17.2',  # Commented out based on your setup
         'imgaug==0.4.0',
         'kornia==0.5.0',
         'pyclipper==1.3.0.post5',
@@ -17,7 +17,7 @@ setup(
         'omegaconf==2.1.2',
         'tqdm==4.66.1',
         'easydict==1.9',
-        #'scikit-learn==0.24.2',
+        # 'scikit-learn==0.24.2',  # Commented out based on your setup
         'pandas==2.0.3',
         'webdataset==0.2.57',
         'pytorch-lightning==1.2.9',
@@ -28,8 +28,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            # Define command-line scripts if needed
-            # e.g., 'remove_subtitles=backend.main:main_function'
+            'remove_subtitles=backend.main:main',  # Define the CLI command and entry point
         ],
     },
     author="Your Name",
