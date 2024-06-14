@@ -8,7 +8,7 @@ setup(
         'albumentations==0.5.2',
         'filesplit==3.0.2',
         'opencv-python==4.8.1.78',
-        'scikit-image==0.17.2',
+        #'scikit-image==0.17.2',
         'imgaug==0.4.0',
         'kornia==0.5.0',
         'pyclipper==1.3.0.post5',
