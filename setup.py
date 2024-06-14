@@ -17,7 +17,7 @@ setup(
         'omegaconf==2.1.2',
         'tqdm==4.66.1',
         'easydict==1.9',
-        'scikit-learn==0.24.2',
+        #'scikit-learn==0.24.2',
         'pandas==2.0.3',
         'webdataset==0.2.57',
         'pytorch-lightning==1.2.9',
